@@ -10,7 +10,18 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  ...compat.plugins("simple-import-sort"),
+  ...compat.extends("@rocketseat/eslint-config/next", "next/core-web-vitals", "next/typescript"),
+  ...compat.config({
+    "rules": {
+      "simple-import-sort/imports": "error",
+      "simple-import-sort/exports": "error"
+    },
+    "parserOptions": {
+      "sourceType": "module",
+      "ecmaVersion": "latest"
+    }
+  })
 ];
 
 export default eslintConfig;
