@@ -14,14 +14,19 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu'
+import { Skeleton } from '../ui/skeleton'
 
 const { useSession } = createAuthClient()
 
 export function UserProfileButton() {
-  const { data: session } = useSession()
+  const { data: session, isPending } = useSession()
 
   async function handleSignOut() {
     await authClient.signOut()
+  }
+
+  if (isPending) {
+    return <Skeleton className="h-10 w-10 rounded-full" />
   }
 
   return (
