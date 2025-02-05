@@ -4,7 +4,9 @@ import type { Metadata } from 'next'
 
 import { Toaster } from '@/components/ui/toaster'
 import { cn } from '@/lib/utils'
-import { geistMono, geistSans } from '@/styles/fonts'
+import { inter } from '@/styles/fonts'
+
+import Providers from './providers'
 
 export const metadata: Metadata = {
   title: 'Togglefy | Feature Flag made easy',
@@ -21,11 +23,11 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          `${geistSans.variable} ${geistMono.variable}`,
+          `${inter.className}`,
           'whitespace-pre-line overscroll-none antialiased',
         )}
       >
-        {children}
+        <Providers>{children}</Providers>
         <Toaster />
       </body>
     </html>
